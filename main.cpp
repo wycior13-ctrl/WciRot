@@ -1,64 +1,56 @@
 #include <iostream>
 #include <string>
 
-// Globalna tablica znaków
-char table[24] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-                  'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'};
+int main(){
+     using namespace std;
+     char table[24] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'};
+     string input;
+     cout << "give the string: ";
+     cin >> input;
+     int securenumber;
+     cout << "give the number: ";
+     cin >> securenumber;
+     long longofthestr = input.length();
+     long bufferone = 0;
+     if (longofthestr <= 0){return 1;}
+     char buffertwo = table[1];          
+     int bufferthree = securenumber;
+     long bufferfaja = 0;
+     char output[longofthestr];
+     long bufferjprdl = 0;
+     while (bufferone++ != longofthestr){
+          
+          if (bufferthree >= 23)
+               bufferthree = 1;
+          else ++bufferthree;
+          output[bufferjprdl++] = rot(buffertwo, bufferthree);
+     }
 
-// Funkcja rot: przesuwa znak str o how pozycji w tablicy table
-char rot(char str, int how) {
-    int length = 24;
-    int index = -1;
 
-    // Znajdujemy indeks znaku w table
-    for (int i = 0; i < length; ++i) {
-        if (table[i] == str) {
-            index = i;
-            break;
-        }
-    }
 
-    // Jeśli znak nie jest w tablicy, zwracamy go bez zmian
-    if (index == -1)
-        return str;
 
-    // Obliczamy nowy indeks z zawijaniem
-    int newIndex = (index + how) % length;
-    if (newIndex < 0) newIndex += length; // obsługa ujemnych przesunięć
+     return 0;}
 
-    return table[newIndex];
+int rottrue(char strtrue, int howtrue, int pierd){
+     if ((howtrue + pierd) >= 24){
+          return strtrue;
+     }
+     int buffertrueone = 0;
+     pierd = pierd + howtrue;
+     while(buffertrueone != 24){
+          strtrue = table[pierd];}
+     return strtrue;
 }
 
-int main() {
-    using namespace std;
-    string input;
-    cout << "give the string: ";
-    cin >> input;
-
-    int securenumber;
-    cout << "give the number: ";
-    cin >> securenumber;
-
-    long length = input.length();
-    if (length <= 0) {
-        cout << "Empty string!" << endl;
-        return 1;
-    }
-
-    string output;
-    output.reserve(length);
-
-    int shift = securenumber;
-
-    for (long i = 0; i < length; ++i) {
-        if (shift >= 23)
-            shift = 1;
-        else
-            ++shift;
-
-        output.push_back(rot(input[i], shift));
-    }
-
-    cout << "Encrypted string: " << output << endl;
-    return 0;
-}
+int rot(char str, int how){
+     char rotated;
+     int bufferrotone = 0;
+     bool bufferrottwo = false;
+     char bufferrotpierdol;
+     while(bufferrotone != 24){
+          if (table[bufferrotone] == str)
+               bufferrottwo = true;
+          bufferrotpierdol = bufferrotone;}
+     if (bufferrottwo == true){rotated = rottrue(str, how, bufferrotpierdol); return rotated;}
+     else return str;
+     }
