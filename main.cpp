@@ -1,70 +1,52 @@
-//stupid non-sense code
-//wycior13-ctrl
+// stupid non-sense code
+// wycior13-ctrl
 #include <iostream>
 #include <string>
 
-int main(){
-     using namespace std; //table of used characters
-     char table[24] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'};
-     string input;
-     cout << "give the string: "; //please for the input string
-     cin >> input;
+// table of used characters
+char tableLower[] = {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+    'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'
+};
 
+char tableUpper[] = {
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+    'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W', 'X', 'Y', 'Z'
+};
 
-     int securenumber; //please for the rot number
-     cout << "give the number: ";
-     cin >> securenumber;
+const int tableLen = 24;
 
-
-     long longofthestr = input.length();
-
-
-     long bufferone = 0; //making buffer and more code thait im self not understand
-     if (longofthestr <= 0){return 1;}
-     char buffertwo = table[1];          
-     int bufferthree = securenumber;
-     long bufferfaja = 0;
-     char output[longofthestr];
-     long bufferjprdl = 0;
-
-
-     while (bufferone++ != longofthestr){ //rotating
-          
-          if (bufferthree >= 23)
-               bufferthree = 1; //making the rot number one bigger on every character
-          else ++bufferthree;
-          output[bufferjprdl++] = rot(buffertwo, bufferthree);
-     }
-
-
-
-
-     return 0;}
-
-int rottrue(char strtrue, int howtrue, int howfirst){
-     if ((howtrue + howfirst) >= 24){ //im lazy so im return here the self character
-          return strtrue;
-     }
-     int buffertrueone = 0; //here im not understand it the next time
-     howfirst = howfirst + howtrue;
-     while(buffertrueone != 24){
-          strtrue = table[howfirst];}
-     return strtrue;
+char rot(char c, int shift)
+{
+    for (int i = 0; i < tableLen; ++i) {
+        const int index = i + shift;
+        if (tableLower[i] == c) {
+            return tableLower[index % tableLen];
+        } else if (tableUpper[i] == c) {
+            return tableUpper[index % tableLen];
+        }
+    }
+    return c;
 }
 
-int rot(char str, int how){ //here we rotate
-     char rotated; //rotating buffer
-     int bufferrotone = 0; //next buffers
-     bool bufferrottwo = false;
-     char bufferrotthree;
+int main()
+{
+    using namespace std;
 
-     while(bufferrotone != 24){
-          if (table[bufferrotone] == str) //if the character is in the table then rotate it
-               bufferrottwo = true;
-          bufferrotthree = bufferrotone;} //here im... im self not understand it
-     if (bufferrottwo == true){rotated = rottrue(str, how, bufferrotthree); return rotated;}
-     else return str;
-     }
+    string input;
+    cout << "give the string: "; // please for the input string
+    cin >> input;
 
-//and here you see: this is stupid code that not work
-//c++
+    int securenumber; // please for the rot number
+    cout << "give the number: ";
+    cin >> securenumber;
+
+    string buf(input.length(), ' ');
+
+    for (int i = 0; i < input.length(); ++i) {
+        buf[i] = rot(input[i], securenumber);
+    }
+
+    cout << buf << "\n";
+    return 0;
+}
